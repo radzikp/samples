@@ -35,7 +35,7 @@ public class HelloResource {
         return "OK";
     }
 
-    Future<String> getRemoteMessage() {
+    private Future<String> getRemoteMessage() {
         Logger.getLogger(HelloResource.class.getName()).log(Level.INFO, "Starting time consuming task...");
         return this.macroTarget.request().async().get(new InvocationCallback<String>() {
             @Override

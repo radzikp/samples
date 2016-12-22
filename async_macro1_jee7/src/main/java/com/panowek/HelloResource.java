@@ -29,7 +29,7 @@ public class HelloResource {
         supplyAsync(this::doSomeWork, this.pool).thenAccept(response::resume);
     }
 
-    public String doSomeWork() {
+    private String doSomeWork() {
         try {
             Thread.sleep(3000);
         } catch (InterruptedException ex) {
