@@ -28,11 +28,16 @@ public class Block {
     }
 
     public void mineBlock(int difficulty) {
+        long start = new Date().getTime();
+        System.out.println("Mining started at: " + new Date(start));
         String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * "0"
         while(!this.hash.substring( 0, difficulty).equals(target)) {
             this.nonce ++;
             this.hash = calculateHash();
         }
+        long took = new Date().getTime() - start;
+        System.out.println("Mining block took: " + took);
+        System.out.println("Mining block ended: " + new Date());
         System.out.println("Block Mined!!! : " + hash);
     }
 
