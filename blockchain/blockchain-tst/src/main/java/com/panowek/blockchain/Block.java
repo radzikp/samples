@@ -3,6 +3,8 @@ package com.panowek.blockchain;
 import com.panowek.utils.StringUtil;
 import lombok.Getter;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -22,22 +24,22 @@ public class Block {
 
     public String calculateHash() {
         String calculatedhash = StringUtil.applySha256(
-                this.previousHash + Long.toString(this.timeStamp) + this.data
+                previousHash + timeStamp + nonce + data
         );
         return calculatedhash;
     }
 
     public void mineBlock(int difficulty) {
-        long start = new Date().getTime();
-        System.out.println("Mining started at: " + new Date(start));
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("Mining started at: " + now);
         String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * "0"
-        while(!this.hash.substring( 0, difficulty).equals(target)) {
-            this.nonce ++;
-            this.hash = calculateHash();
+        while(!hash.substring( 0, difficulty).equals(target)) {
+            nonce++;
+            hash = calculateHash();
         }
-        long took = new Date().getTime() - start;
-        System.out.println("Mining block took: " + took);
-        System.out.println("Mining block ended: " + new Date());
+        Duration duration = Duration.between(now, LocalDateTime.now());
+        System.out.printf("Mining block took: %d seconds %n", duration.toSecondsPart());
+        System.out.println("Mining block ended: " + LocalDateTime.now());
         System.out.println("Block Mined!!! : " + hash);
     }
 
