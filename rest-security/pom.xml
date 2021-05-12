@@ -14,7 +14,7 @@
     <properties>
         <!-- Spring -->
         <org.springframework.version>4.0.5.RELEASE</org.springframework.version>
-        <org.springframework.security.version>3.2.4.RELEASE</org.springframework.security.version>
+        <org.springframework.security.version>5.2.10.RELEASE</org.springframework.security.version>
         <org.codehaus.cargo.version>1.4.8</org.codehaus.cargo.version>
     </properties>
 
